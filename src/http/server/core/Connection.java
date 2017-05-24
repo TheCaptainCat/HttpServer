@@ -38,6 +38,7 @@ public class Connection implements Runnable {
             OutputStream out = socket.getOutputStream();
             out.write(r.toByteArray());
             out.flush();
+            socket.close();
         } catch (IOException ex) {
             Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
         }
