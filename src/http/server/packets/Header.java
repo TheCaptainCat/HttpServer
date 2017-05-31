@@ -1,9 +1,9 @@
 package http.server.packets;
 
 public class Header {
-    private String method;
-    private int code;
-    private String label;
+    private final String method;
+    private final int code;
+    private final String label;
 
     public Header(String method, int code, String label) {
         this.method = method;

@@ -1,16 +1,14 @@
 package http.server.packets;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Content {
-    private List<Byte> content;
-    private String type;
-    private String encoding;
+    private final List<Byte> content;
+    private final String type;
+    private final String encoding;
 
     public Content(String filename, String encoding)
             throws IOException {

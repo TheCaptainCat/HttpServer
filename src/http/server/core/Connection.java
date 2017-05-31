@@ -1,4 +1,4 @@
-package http.server.core;
+ package http.server.core;
 
 import http.server.packets.Content;
 import http.server.packets.Header;
@@ -8,13 +8,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Connection implements Runnable {
     public static final int MAX_SIZE = 2048;
-    private Socket socket;
+    private final Socket socket;
 
     public Connection(Socket socket) {
         this.socket = socket;
@@ -25,7 +24,7 @@ public class Connection implements Runnable {
         try {
             BufferedInputStream inBuf = new BufferedInputStream(socket.getInputStream());
             byte[] data = new byte[MAX_SIZE];
-            int length = 0;
+            int length;
             String content = "";
             while ((length = inBuf.read(data)) != -1) {
                 content += new String(data, 0, length);

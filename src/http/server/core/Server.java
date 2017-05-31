@@ -7,8 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Server implements Runnable {
-    private int port;
-    private ServerSocket serverSocket;
+    private final int port;
+    private final ServerSocket serverSocket;
 
     public Server(int port) throws IOException {
         this.port = port;
