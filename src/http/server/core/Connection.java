@@ -4,6 +4,7 @@ import http.server.packets.Content;
 import http.server.packets.Header;
 import http.server.packets.Response;
 import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -38,9 +39,25 @@ public class Connection implements Runnable {
             OutputStream out = socket.getOutputStream();
             out.write(r.toByteArray());
             out.flush();
-            socket.close();
-        } catch (IOException ex) {
-            Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException fnfe) {
+            try {
+                Header h = new Header("HTTP/1.1", 200, "OK");
+                Content c = new Content("www/errors/404.html", "UTF-8");
+                Response r = new Response(h, c);
+                OutputStream out = socket.getOutputStream();
+                out.write(r.toByteArray());
+                out.flush();
+            } catch (IOException ex) {
+                Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                socket.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }
