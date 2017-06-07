@@ -32,6 +32,8 @@ public class Connection implements Runnable {
                     break;
             }
             String filename = content.split(" ")[1].substring(1);
+            if (filename.equals(""))
+                filename = "index.html";
             Header h = new Header("HTTP/1.1", 200, "OK");
             Content c = new Content("www/" + filename, "UTF-8");
             Response r = new Response(h, c);
@@ -40,7 +42,7 @@ public class Connection implements Runnable {
             out.flush();
         } catch (FileNotFoundException fnfe) {
             try {
-                Header h = new Header("HTTP/1.1", 200, "OK");
+                Header h = new Header("HTTP/1.1", 404, "Not Found");
                 Content c = new Content("www/errors/404.html", "UTF-8");
                 Response r = new Response(h, c);
                 OutputStream out = socket.getOutputStream();

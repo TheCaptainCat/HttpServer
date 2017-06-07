@@ -10,6 +10,8 @@ public class MimeTypes {
             return "text/css";
         if (ext.matches("jpg|jpeg"))
             return "image/jpeg";
+        if (ext.matches("png"))
+            return "image/png";
         return "text/plain";
     }
 }
