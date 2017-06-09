@@ -1,14 +1,24 @@
 package http.server.responses;
 
 public class Cookie {
-    public String content;
+    private String title;
+    private String content;
 
-    public Cookie(String content) {
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public Cookie(String title, String content) {
+        this.title = title;
         this.content = content;
     }
 
     @Override
     public String toString() {
-        return content;
+        return title + "=" + content;
     }
 }

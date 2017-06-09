@@ -29,7 +29,7 @@ public class Response {
                 content.getType(), content.getEncoding(), content.getContent().size());
         s += "Server: HttpServer/0.1 (Windows 6.4)\nConnection: close\n";
         for (Cookie c : cookies)
-            s += c.toString() + "\n";
+            s += "Set-Cookie: " +  c.toString() + "\n";
         s += "\n";
         int sLen = s.length();
         int cLen = content.getContent().size();
