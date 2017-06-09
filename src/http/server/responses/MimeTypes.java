@@ -1,4 +1,4 @@
-package http.server.packets;
+package http.server.responses;
 
 public class MimeTypes {
     public static String getMimeType(String ext) {

@@ -1,8 +1,10 @@
  package http.server.core;
 
-import http.server.packets.Content;
-import http.server.packets.Header;
-import http.server.packets.Response;
+import http.server.requests.Request;
+import http.server.responses.Content;
+import http.server.responses.Cookie;
+import http.server.responses.Header;
+import http.server.responses.Response;
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -31,12 +33,17 @@ public class Connection implements Runnable {
                 if (length != MAX_SIZE)
                     break;
             }
-            String filename = content.split(" ")[1].substring(1);
+            Request request = new Request(content);
+            System.out.println(request);
+            String filename = request.getHeader().getFile();
             if (filename.equals(""))
                 filename = "index.html";
             Header h = new Header("HTTP/1.1", 200, "OK");
             Content c = new Content("www/" + filename, "UTF-8");
             Response r = new Response(h, c);
+            r.addCookie(new Cookie("Set-Cookie: id=1574-885751-111860843"));
+            r.addCookie(new Cookie("Set-Cookie: remember=true"));
+            r.addCookie(new Cookie("Set-Cookie: __g_=qfg4qd6g872qeg7q6d"));
             OutputStream out = socket.getOutputStream();
             out.write(r.toByteArray());
             out.flush();

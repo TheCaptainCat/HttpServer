@@ -1,4 +1,4 @@
-package http.server.packets;
+package http.server.responses;
 
 import java.io.FileInputStream;
 import java.io.IOException;

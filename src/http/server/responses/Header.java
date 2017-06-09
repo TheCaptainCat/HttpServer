@@ -1,18 +1,18 @@
-package http.server.packets;
+package http.server.responses;
 
 public class Header {
-    private final String method;
+    private final String protocol;
     private final int code;
     private final String label;
 
-    public Header(String method, int code, String label) {
-        this.method = method;
+    public Header(String protocol, int code, String label) {
+        this.protocol = protocol;
         this.code = code;
         this.label = label;
     }
 
-    public String getMethod() {
-        return method;
+    public String getProtocol() {
+        return protocol;
     }
 
     public int getCode() {
