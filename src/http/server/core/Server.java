@@ -14,6 +14,7 @@ public class Server implements Runnable {
 
     public Server(int port) throws IOException {
         this.port = port;
+        // Création du socket d'écoute.
         this.serverSocket = new ServerSocket(port);
     }
 
@@ -28,8 +29,10 @@ public class Server implements Runnable {
         while (true) {
             try {
                 System.out.println("Waiting for a connection.");
+                // Attente de la connexion.
                 Socket connection = serverSocket.accept();
                 System.out.println("Connection accepted.");
+                // Lencement de la connexion avec le client.
                 new Thread(new Connection(connection)).start();
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);

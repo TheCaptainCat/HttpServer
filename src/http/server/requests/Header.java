@@ -1,5 +1,10 @@
 package http.server.requests;
 
+/**
+* Cette classe sert à découper la première ligne d'une requête afin d'extraire les informations.
+*
+* La première ligne est de type GET /index.html HTTP/1.1
+*/
 public class Header {
     private final String method;
     private final String file;

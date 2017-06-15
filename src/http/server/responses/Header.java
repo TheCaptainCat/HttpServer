@@ -1,5 +1,10 @@
 package http.server.responses;
 
+/**
+* Cette classe représente la première ligne d'une réponse.
+*
+* Par exemple: HTTP/1.1 OK 200.
+*/
 public class Header {
     private final String protocol;
     private final int code;

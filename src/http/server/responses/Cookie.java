@@ -1,5 +1,8 @@
 package http.server.responses;
 
+/**
+* Cette classe représente un cookie.
+*/
 public class Cookie {
     private String title;
     private String content;

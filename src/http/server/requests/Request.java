@@ -4,6 +4,9 @@ import http.server.responses.Cookie;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+* Cette classe sert à découper une requête reçue afin d'extraire les informations.
+*/
 public class Request {
     private Header header;
     private List<RequestLine> lines;
@@ -31,17 +34,25 @@ public class Request {
         this(header, new ArrayList<>(), new ArrayList<>());
     }
     
+    /**
+    * Contruit une requête à partir d'une chaîne brute.
+    *
+    * @param raw la requête brute dans une String
+    */
     public Request(String raw) {
         String[] tmp = raw.split("\n", 2);
         this.header = new Header(tmp[0]);
         this.lines = new ArrayList<>();
+        // Parcour de chaque ligne.
         for (String s : tmp[1].split("\n")) {
             try {
+                // Lecture de la ligne.
                 lines.add(new RequestLine(s));
             } catch (ArrayIndexOutOfBoundsException e) { }
         }
         this.cookies = new ArrayList<>();
         try {
+            // Récupération des cookies.
             String cookieContent = getRequestLine("Cookie").getContent();
             for (String s : cookieContent.split("; "))
                 cookies.add(new Cookie(s.split("=")[0], s.split("=")[1]));

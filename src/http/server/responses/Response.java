@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+* Cette classe sert à construire une requête à envoyer au client.
+*/
 public class Response {
     Header header;
     Content content;
@@ -19,6 +22,13 @@ public class Response {
         cookies.add(c);
     }
     
+    /**
+    * Transforme le contenu de la réponse en chaîne de caractères,
+    * dont chaque élément est dans un octet. Le tableau d'octets
+    * sera écrit dans le socket.
+    *
+    * @return un tableau d'octet contenant l'entête et le corps de la réponse
+    */
     public byte[] toByteArray() {
         String s = String.format(
                 "%s %d %s\n",

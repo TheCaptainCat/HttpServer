@@ -1,5 +1,10 @@
 package http.server.requests;
 
+/**
+* Cette classe sert à découper une ligne de requête afin d'en extraire les données.
+*
+* Une ligne est de type Titre: Contenu, ex : Host: www.exemple.fr
+*/
 public class RequestLine {
     private final String title;
     private final String content;
